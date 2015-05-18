@@ -110,3 +110,5 @@ Color is default.
 ## Credit
 
 Modified from [a "nifty assignment" from the annual SIGCSE meeting](http://nifty.stanford.edu/2009/stone-random-art/).
+
+## To create cool art run the command: "python3 create_art.py"
