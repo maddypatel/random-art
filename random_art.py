@@ -18,15 +18,17 @@ class Expression:
 
         for (function, coordinate) in self.functions:
             if function == "sin" and coordinate == "x":
-                value *= math.pi * math.sin(math.cos(get_avg(math.sinh(x), get_avg(x, math.tanh(x ** 2)))))
+                value *= math.pi * math.sin(math.cos(get_avg(math.sinh(x), get_avg(x, math.tanh(math.e ** 2)))))
             elif function == "sin" and coordinate == "y":
-                value *= math.pi * math.sin(math.cos(get_avg(math.tanh(x), get_avg(x, math.tan(x ** 2)))))
+                value *= math.pi * math.sin(math.cos(get_avg(math.sinh(y), get_avg(y, math.tanh(math.e ** 2)))))
             elif function == "cos" and coordinate == "x":
-                value *= math.pi * math.cos(math.exp(math.cos(math.tan(math.tan(math.e * x))))) * \
-                    math.cos(math.sin(get_avg(math.tanh(y), get_avg(y, math.tan(y ** 2)))))
+                value *= math.pi * math.cos(math.exp(math.cos(math.tan(math.tan(math.e * x)))))
             elif function == "cos" and coordinate == "y":
-                value *= math.pi * math.cos(math.exp(math.cos(math.tan(math.tan(math.e * y))))) * \
-                    math.cos(math.sin(get_avg(math.tan(y), get_avg(y, math.tanh(y ** 2)))))
+                value *= math.pi * math.cos(math.exp(math.cos(math.tan(math.tan(math.e * y)))))
+            elif function == "tan" and coordinate == "x":
+                value = math.tan(math.tanh(get_avg(math.atan(y), get_avg(y, math.tan(y ** 2)))))
+            elif function == "tan" and coordinate == "y":
+                value = math.tan(math.tanh(get_avg(math.atan(y), get_avg(y, math.tan(y ** 2)))))
 
         return value
 
@@ -40,17 +42,19 @@ def create_expression():
     generates a number between -1.0 and 1.0, given x and y coordinates."""
     expr = Expression()
     for _ in range(5):
-        if random.random() > 0.5:
+        if random.random() < 0.33:
             trigfunc = "sin"
-        else:
+        elif random.random() < 0.66:
             trigfunc = "cos"
+        else:
+            trigfunc = "tan"
 
         if random.random() > 0.5:
-            xy = "x"
+            coordinate = "x"
         else:
-            xy = "y"
+            coordinate = "y"
 
-        expr.functions.append([trigfunc, xy])
+        expr.functions.append([trigfunc, coordinate])
     return expr
 
 
